@@ -3,7 +3,6 @@
 source /home/deploy/.bashrc
 
 cd /home/deploy/$DIR_NAME
-echo $DIR_NAME
 
 # create and run docker container
 read -e -p "Enter the new postgresql username: " POSTGRESQL_USERNAME
