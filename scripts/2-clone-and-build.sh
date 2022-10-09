@@ -6,13 +6,13 @@ source ~/.bashrc
 
 # install node
 nvm install node
+source /home/deploy/.bashrc
 node -v
 
-source ~/.bashrc
 
 # install yarn
-curl -o- -L https://yarnpkg.com/install.sh | bash
-source ~/.bashrc
+npm i -g yarn
+source /home/deploy/.bashrc
 yarn -v
 
 # cloning backend repo
@@ -27,4 +27,3 @@ yarn build
 
 # change permissions to use docker
 sudo usermod -aG docker $USER
-source ~/.bashrc
