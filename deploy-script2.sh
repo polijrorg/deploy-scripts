@@ -1,3 +1,7 @@
+#!/bin/bash
+
+#Run this script inside the project root!
+
 # create and run docker container
 read -e -p "Enter the new postgresql username: " POSTGRESQL_USERNAME
 read -e -p "Enter the new postgresql password: " POSTGRESQL_PASSWORD
@@ -9,7 +13,10 @@ CONTAINER_ID=$(docker run -d --name postgresql -e POSTGRESQL_PASSWORD=$POSTGRESQ
 read -e -p "Enter the app port: " APP_PORT
 UUID=$(uuidgen)
 touch .env
-echo "PORT=$APP_PORT\nTOKEN_HASH=$UUID\nDATABASE_URL=\"postgresql://$POSTGRESQL_USERNAME:$POSTGRESQL_PASSWORD@localhost:$POSTGRESQL_PORT/$POSTGRESQL_DATABASE?schema=public\"" > .env
+echo "PORT=$APP_PORT
+TOKEN_HASH=$UUID
+DATABASE_URL=\"postgresql://$POSTGRESQL_USERNAME:$POSTGRESQL_PASSWORD@localhost:$POSTGRESQL_PORT/$POSTGRESQL_DATABASE?schema=public\"
+" > .env
 read -e -p ".env created with PORT, generated TOKEN_HASH and DATABASE_URL (for prisma). Do you want to edit it [y|n]? " EDIT
 if [ $EDIT = "y" ]; then
   vim .env
