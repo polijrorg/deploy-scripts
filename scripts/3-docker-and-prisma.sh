@@ -24,3 +24,6 @@ fi
 
 # migrate prisma
 yarn prisma migrate deploy
+
+echo "\nScript Finished!"
+
