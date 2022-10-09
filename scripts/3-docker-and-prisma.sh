@@ -1,6 +1,7 @@
 #!/bin/bash
 
-#Run this script inside the project root!
+source /home/deploy/.bashrc
+cd /home/deploy/$DIR_NAME
 
 # create and run docker container
 read -e -p "Enter the new postgresql username: " POSTGRESQL_USERNAME
@@ -8,6 +9,8 @@ read -e -p "Enter the new postgresql password: " POSTGRESQL_PASSWORD
 read -e -p "Enter the new postgresql database name: " POSTGRESQL_DATABASE
 read -e -p "Enter the new postgresql database port: " POSTGRESQL_PORT
 CONTAINER_ID=$(sudo docker run -d --name postgresql -e POSTGRESQL_PASSWORD=$POSTGRESQL_PASSWORD -e POSTGRESQL_USERNAME=$POSTGRESQL_USERNAME -e POSTGRESQL_DATABASE=$POSTGRESQL_DATABASE -p $POSTGRESQL_PORT:5432 bitnami/postgresql:latest)
+echo /home/deploy/.bashrc >> "CONTAINER_ID=$CONTAINER_ID"
+
 
 # create .env
 read -e -p "Enter the app port: " APP_PORT

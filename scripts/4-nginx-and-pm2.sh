@@ -1,5 +1,6 @@
 #!/bin/bash
 
+source /home/deploy/.bashrc
 read -e -p "Enter the domain of the deploy: " DOMAIN
 
 # nginx (allow acces to port 80)
@@ -36,8 +37,7 @@ docker update --restart=unless-stopped $CONTAINER_ID
 
 # start app with pm2
 npm install -g pm2
-read -e -p "Enter the name of the project root (example: piupiuwer-back): " DIR_NAME
-cd ~/$DIR_NAME
+cd /home/deploy/$DIR_NAME
 pm2 start dist/shared/infra/http/server.js
 COMMAND=$(pm2 startup systemd)
 echo $COMMAND | grep sudo | bash
@@ -51,19 +51,5 @@ sudo ufw allow 443
 
 # the end
 echo "The deploy is ready! :)"
-GOODBYE="
-
-
-
-  _____                 _ _                _ 
- / ____|               | | |              | |
-| |  __  ___   ___   __| | |__  _   _  ___| |
-| | |_ |/ _ \ / _ \ / _\` | '_ \| | | |/ _ \\ |
-| |__| | (_) | (_) | (_| | |_) | |_| |  __/_|
- \_____|\___/ \___/ \__,_|_.__/ \__, |\___(_)
-                                 __/ |       
-                                |___/ 
-"
-echo $GOODBYE
 
 exit

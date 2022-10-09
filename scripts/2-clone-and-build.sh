@@ -19,6 +19,7 @@ yarn -v
 read -e -p "Enter the backend repo link: " REPO_LINK
 git clone $REPO_LINK
 DIR_NAME=$(echo $REPO_LINK | sed -E 's/.*\///g')
+echo /home/deploy/.bashrc >> "DIRNAME=$DIR_NAME"
 cd $DIR_NAME
 
 # install dependencies and build
