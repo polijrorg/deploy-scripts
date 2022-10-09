@@ -2,7 +2,7 @@
 sudo apt install nginx -y
 sudo ufw allow 80
 cd /etc/nginx/sites-available
-read -e -p "Enter the project name: " PROJECT_NAME
+read -e -p "Enter the project name (example piupiuwer): " PROJECT_NAME
 sudo touch $PROJECT_NAME
 sudo echo "server {
   listen 80 default_server;
