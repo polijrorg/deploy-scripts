@@ -27,7 +27,7 @@ yarn prisma migrate deploy
 
 # nginx (allow acces to port 80)
 sudo apt install nginx -y
-sudo ufw allow 80
+$(sudo ufw allow 80)
 sudo su
 cd /etc/nginx/sites-available
 read -e -p "Enter the project name: " PROJECT_NAME
