@@ -1,14 +1,17 @@
+read -e -p "Enter the domain of the deploy: " DOMAIN
+
 # nginx (allow acces to port 80)
 sudo apt install nginx -y
 sudo ufw allow 80
 cd /etc/nginx/sites-available
+sudo rm default
 read -e -p "Enter the project name (example piupiuwer): " PROJECT_NAME
 sudo touch $PROJECT_NAME
-sudo echo "server {
+echo "server {
   listen 80 default_server;
   listen [::]:80 default_server;
 
-  server_name _;
+  server_name $DOMAIN;
 
   location / {
     proxy_pass http://localhost:$APP_PORT;
@@ -18,7 +21,7 @@ sudo echo "server {
     proxy_set_header Host \$host;
     proxy_cache_bypass \$http_upgrade;
   }
-}" > $PROJECT_NAME
+}" | sudo tee -a $PROJECT_NAME
 cd ../sites-enabled
 sudo rm default
 sudo ln -s /etc/nginx/sites-available/$PROJECT_NAME $PROJECT_NAME
@@ -37,8 +40,6 @@ COMMAND=$(pm2 startup systemd)
 echo $COMMAND | grep sudo | bash
 
 # configure the ssl
-read -e -p "Now, it's time to configure the domain. When configured, enter the domain: " DOMAIN
-sed -i "s/server_name _;/server_name $DOMAIN;/" /etc/nginx/sites-available/$PROJECT_NAME
 sudo snap install core; sudo snap refresh core
 sudo snap install --classic certbot
 echo "Enter your polijunior email, yes twice and then the press enter on the domain"
@@ -48,6 +49,9 @@ sudo ufw allow 443
 # the end
 echo "The deploy is ready! :)"
 GOODBYE="
+
+
+
   _____                 _ _                _ 
  / ____|               | | |              | |
 | |  __  ___   ___   __| | |__  _   _  ___| |
