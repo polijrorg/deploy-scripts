@@ -9,7 +9,7 @@ read -e -p "Enter the new postgresql username: " POSTGRESQL_USERNAME
 read -e -p "Enter the new postgresql password: " POSTGRESQL_PASSWORD
 read -e -p "Enter the new postgresql database name: " POSTGRESQL_DATABASE
 read -e -p "Enter the new postgresql database port: " POSTGRESQL_PORT
-CONTAINER_ID=$(docker run -d --name postgresql -e POSTGRESQL_PASSWORD=$POSTGRESQL_PASSWORD -e POSTGRESQL_USERNAME=$POSTGRESQL_USERNAME -e POSTGRESQL_DATABASE=$POSTGRESQL_DATABASE -p $POSTGRESQL_PORT:5432 bitnami/postgresql:latest)
+CONTAINER_ID=$(sudo docker run -d --name postgresql -e POSTGRESQL_PASSWORD=$POSTGRESQL_PASSWORD -e POSTGRESQL_USERNAME=$POSTGRESQL_USERNAME -e POSTGRESQL_DATABASE=$POSTGRESQL_DATABASE -p $POSTGRESQL_PORT:5432 bitnami/postgresql:latest)
 echo "export CONTAINER_ID=$CONTAINER_ID" >> /home/deploy/.bashrc
 
 
