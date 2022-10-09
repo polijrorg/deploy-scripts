@@ -30,5 +30,5 @@ yarn build
 GARBAGE=$(sudo groupadd docker)
 sudo usermod -aG docker $USER
 
-echo "\nScript Finished!"
+echo "Script Finished!"
 
