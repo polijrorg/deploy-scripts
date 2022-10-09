@@ -17,8 +17,9 @@ yarn -v
 
 # cloning backend repo
 read -e -p "Enter the backend repo link: " REPO_LINK
-git clone REPO_LINK
-REPO_PATH=$(ls); cd $REPO_PATH
+git clone $REPO_LINK
+DIR_NAME=$(echo $REPO_LINK | sed -E 's/.*\///g')
+cd $DIR_NAME
 
 # install dependencies and build
 yarn
@@ -84,7 +85,7 @@ docker update --restart=unless-stopped $CONTAINER_ID
 # start app with pm2
 npm install -g pm2
 cd ~
-REPO_PATH=$(ls); cd $REPO_PATH
+cd 
 pm2 start dist/shared/infra/http/server.js
 COMMAND=$(pm2 startup systemd)
 echo $COMMAND | grep sudo | bash
