@@ -27,7 +27,7 @@ yarn build
 
 # change permissions to use docker
 sudo usermod -aG docker $USER
-bash
+source ~/.bashrc
 
 # create and run docker container
 read -e -p "Enter the new postgresql username: " POSTGRESQL_USERNAME
