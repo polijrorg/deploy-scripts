@@ -33,7 +33,7 @@ sudo service nginx reload
 sudo service nginx restart
 
 # restart docker container on server problems unless it is directly stopped
-docker update --restart=unless-stopped $CONTAINER_ID
+sudo docker update --restart=unless-stopped $CONTAINER_ID
 
 # start app with pm2
 npm install -g pm2

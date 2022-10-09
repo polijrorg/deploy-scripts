@@ -19,7 +19,7 @@ yarn -v
 read -e -p "Enter the backend repo link: " REPO_LINK
 git clone $REPO_LINK
 DIR_NAME=$(echo $REPO_LINK | sed -E 's/.*\///g')
-echo /home/deploy/.bashrc >> "DIRNAME=$DIR_NAME"
+"export DIRNAME=$DIR_NAME" >> echo /home/deploy/.bashrc
 cd $DIR_NAME
 
 # install dependencies and build
@@ -28,7 +28,7 @@ yarn build
 
 # change permissions to use docker
 GARBAGE=$(sudo groupadd docker)
-sudo usermod -aG docker $USER
+sudo usermod -aG docker deploy
 
 echo "Script Finished!"
 
