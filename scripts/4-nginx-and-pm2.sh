@@ -1,7 +1,7 @@
 # nginx (allow acces to port 80)
 sudo apt install nginx -y
 sudo ufw allow 80
-sudo cd /etc/nginx/sites-available
+cd /etc/nginx/sites-available
 read -e -p "Enter the project name: " PROJECT_NAME
 sudo touch $PROJECT_NAME
 sudo echo "server {
@@ -19,7 +19,7 @@ sudo echo "server {
     proxy_cache_bypass \$http_upgrade;
   }
 }" > $PROJECT_NAME
-sudo cd ../sites-enabled
+cd ../sites-enabled
 sudo rm default
 sudo ln -s /etc/nginx/sites-available/$PROJECT_NAME $PROJECT_NAME
 sudo service nginx reload
