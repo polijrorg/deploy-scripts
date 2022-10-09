@@ -26,4 +26,5 @@ yarn
 yarn build
 
 # change permissions to use docker
+GARBAGE=$(sudo groupadd docker)
 sudo usermod -aG docker $USER
