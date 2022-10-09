@@ -8,6 +8,8 @@ source ~/.bashrc
 nvm install node
 node -v
 
+source ~/.bashrc
+
 # install yarn
 curl -o- -L https://yarnpkg.com/install.sh | bash
 source ~/.bashrc
@@ -81,6 +83,8 @@ docker update --restart=unless-stopped $CONTAINER_ID
 
 # start app with pm2
 npm install -g pm2
+cd ~
+REPO_PATH=$(ls); cd $REPO_PATH
 pm2 start dist/shared/infra/http/server.js
 COMMAND=$(pm2 startup systemd)
 echo $COMMAND | grep sudo | bash
