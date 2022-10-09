@@ -15,6 +15,7 @@ echo "export CONTAINER_ID=$CONTAINER_ID" >> /home/deploy/.bashrc
 
 # create .env
 read -e -p "Enter the app port: " APP_PORT
+echo "export APP_PORT=$APP_PORT" >> /home/deploy/.bashrc
 UUID=$(uuidgen)
 touch .env
 echo "PORT=$APP_PORT

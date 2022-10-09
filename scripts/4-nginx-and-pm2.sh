@@ -9,7 +9,6 @@ sudo ufw allow 80
 cd /etc/nginx/sites-available
 sudo rm default
 read -e -p "Enter the project name (example piupiuwer): " PROJECT_NAME
-read -e -p "Enter the app port: " APP_PORT
 sudo touch $PROJECT_NAME
 echo "server {
   listen 80 default_server;
